@@ -1,0 +1,82 @@
+
+
+
+
+
+Version: "3"
+
+
+Services:
+    networks:
+        arrstack:
+            name: arrstack
+            driver: bridge
+            ipam:
+                driver: default
+                config:
+                - subnet: 
+                  gateway:
+            
+            
+	gluetun:
+		image: qmcgaw/gluetun
+		container_name: gluetun
+		cap_add:
+			- NET_ADMIN
+		devices:
+			- /dev/net/tun:/dev/net/tun
+		
+		ports:
+			- 7575:7575				## Homarr WebUI
+			- 8686:8686				## Lidarr WebUI
+			- 9696:9696				## Prowlarr WebUI
+			- 7878:7878				## Radarr WebUI
+			- 8787:8787				## Readarr WebUI
+			- 8989:8989				## Sonarr WebUI
+			- 6767:6767				## Bazarr WebUI
+			- 8200:8200				## qBittorent WebUI
+			- 6881:6881             ## qBittorent TCP Connection
+            - 8300:8300				## SABnzbd WebUI
+			
+			
+		## Plex Server Ports, I don't want plex running through gluetun but I left them in anyways.##
+		##    - 32400:23400			## Plex Media Server (allow through firewall)
+		##	  - 32469:32469			## Plex DNLA Server
+		##	  - 8324:8324			## Plex for Roku via Plex Companion App
+		
+		volumes:
+		
+		environment:
+			- PUID=
+			- GUID= 
+            - TZ=America/New_York
+
+            # VPN Settings #
+            # Refer to https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers and find your VPN provider for its settings
+			- VPN_SERVICE_PROVIDER=nordvpn
+            - VPN_TYPE=wireguard # or openvpn
+            
+            # Wireguard Required Variable #
+            - WIREGUARD_PRIVATE_KEY= # ADD YOUR KEY https://gist.github.com/bluewalk/7b3db071c488c82c604baf76a42eaad3
+            
+            # Openvpn Required Variables #
+            ##  - OPENVPN_USER=
+            ##  - OPENVPN_PASSWORD=
+            
+            # Optional variables for Custom Wireguard Provider #
+            ##  - WIREGUARD_ENDPOINT_IP=
+            ##  - WIREGURAD_ENDPOINT_PORT=
+            ##  - WIREGUARD_PUBLIC_KEY=
+            ##  - WIREGUARD_PRIVATE_KEY=
+            ##  - WIREGUARD_PRESHARED_KEY=
+            ##  - WIREGURAD_ADDRESSES=
+                 
+            # Optional variables for location - Both Openvpn and Wireguard # 
+            ##  - SERVER_COUNTRTIES=
+            ##  - SERVER_REGIONS=
+            ##  - SERVER_CITIES=
+            ##  - SERVER_HOSTNAMES=
+            ##  - SERVER_CATEGORIES=
+        
+        
+         

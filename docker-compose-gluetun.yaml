@@ -1,23 +1,14 @@
-
-
-
-
+#######################################################################
+#######################################################################
+###																																	###
+### Docker-Compose-gluetun.yaml																			###
+### Edited/by: 10/10/24 by Jacob Barnes															###
+###																																	###
+#######################################################################
+#######################################################################
 
 Version: "3"
-
-
-Services:
-    networks:
-        arrstack:
-            name: arrstack
-            driver: bridge
-            ipam:
-                driver: default
-                config:
-                - subnet: 
-                  gateway:
-            
-            
+services:          
 	gluetun:
 		image: qmcgaw/gluetun
 		container_name: gluetun
@@ -36,7 +27,7 @@ Services:
 			- 6767:6767				## Bazarr WebUI
 			- 8200:8200				## qBittorent WebUI
 			- 6881:6881             ## qBittorent TCP Connection
-            - 8300:8300				## SABnzbd WebUI
+      - 8300:8300				## SABnzbd WebUI
 			
 			
 		## Plex Server Ports, I don't want plex running through gluetun but I left them in anyways.##
@@ -49,34 +40,34 @@ Services:
 		environment:
 			- PUID=
 			- GUID= 
-            - TZ=America/New_York
+    	- TZ=America/New_York
 
-            # VPN Settings #
-            # Refer to https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers and find your VPN provider for its settings
+    # VPN Settings #
+  	# Refer to https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers and find your VPN provider for its settings
 			- VPN_SERVICE_PROVIDER=nordvpn
-            - VPN_TYPE=wireguard # or openvpn
+      - VPN_TYPE=wireguard # or openvpn
             
-            # Wireguard Required Variable #
-            - WIREGUARD_PRIVATE_KEY= # ADD YOUR KEY https://gist.github.com/bluewalk/7b3db071c488c82c604baf76a42eaad3
+    # Wireguard Required Variable #
+      - WIREGUARD_PRIVATE_KEY= # ADD YOUR KEY https://gist.github.com/bluewalk/7b3db071c488c82c604baf76a42eaad3
             
-            # Openvpn Required Variables #
-            ##  - OPENVPN_USER=
-            ##  - OPENVPN_PASSWORD=
+    # Openvpn Required Variables #
+    ##  - OPENVPN_USER=
+    ##  - OPENVPN_PASSWORD=
             
-            # Optional variables for Custom Wireguard Provider #
-            ##  - WIREGUARD_ENDPOINT_IP=
-            ##  - WIREGURAD_ENDPOINT_PORT=
-            ##  - WIREGUARD_PUBLIC_KEY=
-            ##  - WIREGUARD_PRIVATE_KEY=
-            ##  - WIREGUARD_PRESHARED_KEY=
-            ##  - WIREGURAD_ADDRESSES=
+    # Optional variables for Custom Wireguard Provider #
+    ##  - WIREGUARD_ENDPOINT_IP=
+    ##  - WIREGURAD_ENDPOINT_PORT=
+    ##  - WIREGUARD_PUBLIC_KEY=
+    ##  - WIREGUARD_PRIVATE_KEY=
+    ##  - WIREGUARD_PRESHARED_KEY=
+    ##  - WIREGURAD_ADDRESSES=
                  
-            # Optional variables for location - Both Openvpn and Wireguard # 
-            ##  - SERVER_COUNTRTIES=
-            ##  - SERVER_REGIONS=
-            ##  - SERVER_CITIES=
-            ##  - SERVER_HOSTNAMES=
-            ##  - SERVER_CATEGORIES=
+    # Optional variables for location - Both Openvpn and Wireguard # 
+    ##  - SERVER_COUNTRTIES=
+    ##  - SERVER_REGIONS=
+    ##  - SERVER_CITIES=
+    ##  - SERVER_HOSTNAMES=
+    ##  - SERVER_CATEGORIES=
         
         
          

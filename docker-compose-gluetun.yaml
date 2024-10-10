@@ -26,7 +26,7 @@ services:
 			- 8989:8989				## Sonarr WebUI
 			- 6767:6767				## Bazarr WebUI
 			- 8200:8200				## qBittorent WebUI
-			- 6881:6881             ## qBittorent TCP Connection
+			- 6881:6881       ## qBittorent TCP Connection
       - 8300:8300				## SABnzbd WebUI
 			
 			

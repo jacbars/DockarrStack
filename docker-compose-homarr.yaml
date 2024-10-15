@@ -17,7 +17,7 @@ services:
     environment: 
       - PUID=1000
       - GUID=1000
-      - TZ=
+      - TZ=America/New_York
     restart: unless-stopped
       
 # Gluetun manages the ports for containers that use "service:glueten"  

@@ -9,7 +9,7 @@
 
 services:
   radarr:
-    image: lscr.io/linuxserver/prowlarr:latest
+    image: lscr.io/linuxserver/readarr:develop
     container_name: radarr
     network_mode: "service:glueten"
     volumes:

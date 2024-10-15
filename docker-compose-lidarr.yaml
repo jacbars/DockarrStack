@@ -8,7 +8,7 @@
 #######################################################################
 
 services:
-  homarr:
+  lidarr:
     image: lscr.io/linuxserver/lidarr:latest
     container_name: lidarr
     network_mode: "service:glueten"

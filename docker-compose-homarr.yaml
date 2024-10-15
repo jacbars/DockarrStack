@@ -18,6 +18,7 @@ services:
       - PUID=1000
       - GUID=1000
       - TZ=
+    restart: unless-stopped
       
 # Gluetun manages the ports for containers that use "service:glueten"  
 

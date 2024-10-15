@@ -1,0 +1,26 @@
+#######################################################################
+#######################################################################
+###																																	###
+### docker-compose-sonarr.yaml																			###
+### Edited on/by: 10/15/24 by Jacob Barnes												  ###
+###																																	###
+#######################################################################
+#######################################################################
+
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    network_mode: "service:gluetun"
+    volumes: 
+    
+    environment:
+      - PUID=1000
+      - GUID=1000
+      - TZ=America/New_York
+    restart: unless-stopped
+
+# Gluetun manages the ports for containers that use "service:glueten"  
+
+#   ports:
+#     - 8989:8989

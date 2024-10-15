@@ -14,4 +14,4 @@ services:
 # Gluetun manages the ports for containers that use "service:glueten"  
 
 #   ports:
-#     - 7575:7575
+#     - 6767:6767

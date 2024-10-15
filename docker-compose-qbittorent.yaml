@@ -18,10 +18,9 @@ services:
       - PUID=1000
       - GUID=1000
       - TZ=America/New_York
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
     restart: unless-stopped
 
 # Gluetun manages the ports for containers that use "service:glueten"  
-
-#   ports:
-#			- 8200:8200				## qBittorent WebUI
-#			- 6881:6881       ## qBittorent TCP Connection
+# qBittorent should ALWAYS use a VPN or a secure connection / socks5 proxy / etc.

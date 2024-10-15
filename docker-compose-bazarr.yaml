@@ -3,12 +3,15 @@ services:
     image: lscr.io/linuxserver/bazarr:latest
     container_name: bazarr
     network_mode: "service:gluetun"
+    volumes: 
+    
     environment:
       - PUID=1000
       - GUID=1000
       - TZ=
-    volumes:
-    ports:
-      - 6767:6767
     restart: unless-stopped
-    
+
+# Gluetun manages the ports for containers that use "service:glueten"  
+
+#   ports:
+#     - 7575:7575

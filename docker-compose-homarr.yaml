@@ -1,0 +1,25 @@
+#######################################################################
+#######################################################################
+###																																	###
+### docker-compose-homarr.yaml																			###
+### Edited on/by: 10/15/24 by Jacob Barnes												  ###
+###																																	###
+#######################################################################
+#######################################################################
+
+services:
+  homarr:
+    image: ghcr.io/ajnart/homarr:latest
+    container_name: homarr
+    network_mode: "service:glueten"
+    volumes:
+    
+    environment: 
+      - PUID=1000
+      - GUID=1000
+      - TZ=
+      
+# Gluetun manages the ports for containers that use "service:glueten"  
+
+#   ports:
+#     - 7575:7575

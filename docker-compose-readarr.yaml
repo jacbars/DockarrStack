@@ -1,0 +1,26 @@
+#######################################################################
+#######################################################################
+###																																	###
+### docker-compose-readarr.yaml																			###
+### Edited on/by: 10/15/24 by Jacob Barnes												  ###
+###																																	###
+#######################################################################
+#######################################################################
+
+services:
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    network_mode: "service:glueten"
+    volumes:
+    
+    environment: 
+      - PUID=1000
+      - GUID=1000
+      - TZ=America/New_York
+    restart: unless-stopped
+      
+# Gluetun manages the ports for containers that use "service:glueten"  
+
+#   ports:
+#     - 8787:8787

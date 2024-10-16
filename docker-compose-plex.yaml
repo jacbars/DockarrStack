@@ -1,0 +1,35 @@
+#######################################################################
+#######################################################################
+###																																	###
+### docker-compose-plex.yaml																  			###
+### Edited on/by: 10/15/24 by Jacob Barnes												  ###
+###																																	###
+#######################################################################
+#######################################################################
+
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    volumes: 
+
+    # devices:
+    # The following is for enabling Hardware Acceleration - I have a GTX 960 in my system so the following is for my GPU
+    # 1. Need to install NVIDIA driver for distro - 
+      # Linux --> x86_64 --> Ubuntu --> version:       https://developer.nvidia.com/cuda-downloads
+    # 2. Then install the following:                   https://github.com/NVIDIA/nvidia-container-toolkit
+    # 3. Follow the directions here:                   https://docs.linuxserver.io/images/docker-plex/#nvidia
+    
+    environment:
+      - PUID=1000
+      - GUID=1000
+      - TZ=America/New_York
+      - VERSION=public
+      - PLEX_CLAIM= 
+    restart: unless-stopped
+    
+    ports:
+    - 32400:23400			## Plex Media Server (allow through firewall)
+	  - 32469:32469			## Plex DNLA Server
+		- 8324:8324  			## Plex for Roku via Plex Companion App

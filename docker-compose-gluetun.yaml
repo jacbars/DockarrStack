@@ -25,7 +25,7 @@ services:
 			- 8787:8787				## Readarr WebUI
 			- 8989:8989				## Sonarr WebUI
 			- 6767:6767				## Bazarr WebUI
-			- 8080:8080				## qBittorent WebUI
+			- 8200:8200				## qBittorent WebUI
 			- 6881:6881				## qBittorent TCP Connection			
 			
 		## Plex Server Ports, I don't want plex running through gluetun but I left them in anyways.##

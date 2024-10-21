@@ -11,7 +11,7 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
-    network_mode: "container:glueten"
+    network_mode: "container:gluetun"
     volumes:
     
     environment: 

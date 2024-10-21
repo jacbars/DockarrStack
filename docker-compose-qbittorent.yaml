@@ -2,7 +2,7 @@
 #######################################################################
 ###																																	###
 ### docker-compose-qbittorent.yaml																	###
-### Edited on/by: 10/15/24 by Jacob Barnes												  ###
+### Edited on/by: 10/21/24 by Jacob Barnes												  ###
 ###																																	###
 #######################################################################
 #######################################################################
@@ -15,11 +15,10 @@ services:
     volumes: 
     
     environment:
-      - PUID=1000
-      - GUID=1000
-      - TZ=America/New_York
-      - WEBUI_PORT=8200
-      - TORRENTING_PORT=6881
+      - PUID="${PUID:?error}"
+      - GUID="${GUID:?error}"
+      - TZ="${TZ:?error}"
+      - WEBUI_PORT="${QBIT_WEBUI:?error}"
     restart: unless-stopped
 
 # Gluetun manages the ports for containers that use "service:glueten"  

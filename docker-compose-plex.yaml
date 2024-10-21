@@ -2,7 +2,7 @@
 #######################################################################
 ###																																	###
 ### docker-compose-plex.yaml																  			###
-### Edited on/by: 10/15/24 by Jacob Barnes												  ###
+### Edited on/by: 10/21/24 by Jacob Barnes												  ###
 ###																																	###
 #######################################################################
 #######################################################################
@@ -22,13 +22,14 @@ services:
     # 3. Follow the directions here:                   https://docs.linuxserver.io/images/docker-plex/#nvidia
     
     environment:
-      - PUID=1000
-      - GUID=1000
-      - TZ=America/New_York
-      - VERSION=public
-      - PLEX_CLAIM= 
+      - PUID="${PUID:?error}"
+      - GUID="${GUID:?error}"
+      - TZ="${TZ:?error}"
+      - VERSION=docker
+      - PLEX_CLAIM=${PLEX_CLAIM}
     restart: unless-stopped
-    
+
+# I don't want plex running through the VPN. I want to try having a container be a part of the same network but not using the VPN from gluetun.	
     ports:
     - 32400:23400			## Plex Media Server (allow through firewall)
 	  - 32469:32469			## Plex DNLA Server

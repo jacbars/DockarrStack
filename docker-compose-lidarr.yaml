@@ -11,7 +11,7 @@ services:
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest
     container_name: lidarr
-    network_mode: "container:glueten"
+    network_mode: "container:gluetun"
     volumes:
     
     environment: 

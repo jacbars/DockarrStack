@@ -11,13 +11,13 @@ services:
   readarr:
     image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
-    network_mode: "service:glueten"
+    network_mode: "container:gluetun"
     volumes:
     
     environment: 
-      - PUID=1000
-      - GUID=1000
-      - TZ=America/New_York
+      - PUID="${PUID:?error}"
+      - GUID="${GUID:?error}"
+      - TZ="${TIME_ZONE:?error}"
     restart: unless-stopped
       
 # Gluetun manages the ports for containers that use "service:glueten"  

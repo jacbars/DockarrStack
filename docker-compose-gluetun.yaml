@@ -2,12 +2,23 @@
 #######################################################################
 ###																																	###
 ### Docker-Compose-gluetun.yaml																			###
-### Edited/by: 10/15/24 by Jacob Barnes															###
+### Edited/by: 10/21/24 by Jacob Barnes															###
 ###																																	###
 #######################################################################
 #######################################################################
 
 Version: "3"
+
+networks:
+  dockarrstack:
+    name: dockarrstack
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: "${DOCKER_SUBNET:?error}"
+        gateway: "${DOCKER_GATEWAY:?error}"
+
 services:          
 	gluetun:
 		image: qmcgaw/gluetun
@@ -18,17 +29,17 @@ services:
 			- /dev/net/tun:/dev/net/tun
 		
 		ports:
-			- 7575:7575				## Homarr WebUI
-			- 8686:8686				## Lidarr WebUI
-			- 9696:9696				## Prowlarr WebUI
-			- 7878:7878				## Radarr WebUI
-			- 8787:8787				## Readarr WebUI
-			- 8989:8989				## Sonarr WebUI
-			- 6767:6767				## Bazarr WebUI
-			- 8200:8200				## qBittorent WebUI
-			- 6881:6881				## qBittorent TCP Connection			
+			- "${HOMARR_WEBUI:?error}"						## Homarr WebUI
+			- "${LIDARR_WEBUT:?error}"						## Lidarr WebUI
+			- "${PROWLARR_WEBUI:?error}"					## Prowlarr WebUI
+			- "${RADARR_WEBUI:?error}"						## Radarr WebUI
+			- "${READARR_WEBUI:?error}"					## Readarr WebUI
+			- "${SONARR_WEBUI:?error}"						## Sonarr WebUI
+			- "${BAZARR_WEBUI:?error}"						## Bazarr WebUI
+			- "${QBIT_WEBUI:?error}"							## qBittorent WebUI
+			- "${QBIT_TCP:?error}"								## qBittorent TCP Connection			
 			
-		## Plex Server Ports, I don't want plex running through gluetun but I left them in anyways.##
+		## Plex Server Ports, I don't want plex running through gluetun but I left them just in case. ##
 		##    - 32400:23400			## Plex Media Server (allow through firewall)
 		##	  - 32469:32469			## Plex DNLA Server
 		##	  - 8324:8324			## Plex for Roku via Plex Companion App
@@ -36,36 +47,35 @@ services:
 		volumes:
 		
 		environment:
-			- PUID=1000
-			- GUID= 1000
-    	- TZ=America/New_York
+			- PUID="${PUID:?error}"
+			- GUID="${GUID:?error}"
+    	- TZ="${TIME_ZONE:?error}"
 
-    # VPN Settings #
-  	# Refer to https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers and find your VPN provider for its settings
-			- VPN_SERVICE_PROVIDER=nordvpn
-      - VPN_TYPE=wireguard # or openvpn
+		#### VPN SETTINGS	####
+			- VPN_SERVICE_PROVIDER="${VPN_SERVICE_PROVIDER:?error}"
+      - VPN_TYPE="${VPN_TYPE:?error}" # or openvpn
             
     # Wireguard Required Variable #
-      - WIREGUARD_PRIVATE_KEY= # ADD YOUR KEY https://gist.github.com/bluewalk/7b3db071c488c82c604baf76a42eaad3
+      - WIREGUARD_PRIVATE_KEY="${WIREGUARD_PRIVATE_KEY}" # ADD YOUR KEY https://gist.github.com/bluewalk/7b3db071c488c82c604baf76a42eaad3
             
     # Openvpn Required Variables #
-    ##  - OPENVPN_USER=
-    ##  - OPENVPN_PASSWORD=
+      - OPENVPN_USER="${OPENVPN_USER}"
+      - OPENVPN_PASSWORD="${OPENVPN_PASSWORD}"
             
     # Optional variables for Custom Wireguard Provider #
-    ##  - WIREGUARD_ENDPOINT_IP=
-    ##  - WIREGURAD_ENDPOINT_PORT=
-    ##  - WIREGUARD_PUBLIC_KEY=
-    ##  - WIREGUARD_PRIVATE_KEY=
-    ##  - WIREGUARD_PRESHARED_KEY=
-    ##  - WIREGURAD_ADDRESSES=
+      - WIREGUARD_ENDPOINT_IP="${WIREGUARD_ENDPOINT_IP}"
+      - WIREGURAD_ENDPOINT_PORT="${WIREGUARD_ENDPOINT_PORT}"
+      - WIREGUARD_PUBLIC_KEY="${WIREGUARD_PUBLIC_KEY}"
+      - WIREGUARD_PRIVATE_KEY="${WIREGUARD_PRIVATE_KEY}"
+      - WIREGUARD_PRESHARED_KEY="${WIREGUARD_PRESHARED_KEY}"
+      - WIREGURAD_ADDRESSES="${WIREGUARD_ADDRESSES}"
                  
     # Optional variables for location - Both Openvpn and Wireguard # 
-    ##  - SERVER_COUNTRTIES=
-    ##  - SERVER_REGIONS=
-    ##  - SERVER_CITIES=
-    ##  - SERVER_HOSTNAMES=
-    ##  - SERVER_CATEGORIES=
-        
-        
-         
+      - SERVER_COUNTRTIES="${SERVER_COUNTRIES}"
+      - SERVER_REGIONS="${SERVER_REGIONS}"
+      - SERVER_CITIES="${SERVER_CITIES}"
+      - SERVER_HOSTNAMES="${SERVER_HOSTNAMES}"
+      - SERVER_CATEGORIES="${SERVER_CATEGORIES}"
+		
+		networks:
+			- dockarrstack

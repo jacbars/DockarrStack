@@ -11,13 +11,13 @@ services:
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest
     container_name: lidarr
-    network_mode: "service:glueten"
+    network_mode: "container:glueten"
     volumes:
     
     environment: 
       - PUID="${PUID:?error}"
       - GUID="${GUID:?error}"
-      - TZ="${TZ:?error}"
+      - TZ="${TIME_ZONE:?error}"
     restart: unless-stopped
       
 # Gluetun manages the ports for containers that use "service:glueten"  

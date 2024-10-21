@@ -11,7 +11,6 @@ services:
   plex:
     image: lscr.io/linuxserver/plex:latest
     container_name: plex
-    network_mode: host
     volumes: 
 
     # devices:
@@ -26,11 +25,16 @@ services:
       - GUID="${GUID:?error}"
       - TZ="${TZ:?error}"
       - VERSION=docker
-      - PLEX_CLAIM=${PLEX_CLAIM}
+      - PLEX_CLAIM="${PLEX_CLAIM}"
     restart: unless-stopped
 
 # I don't want plex running through the VPN. I want to try having a container be a part of the same network but not using the VPN from gluetun.	
     ports:
-    - 32400:23400			## Plex Media Server (allow through firewall)
-	  - 32469:32469			## Plex DNLA Server
-		- 8324:8324  			## Plex for Roku via Plex Companion App
+    	- 32400:23400			## Plex Media Server (allow through firewall)
+	  	- 32469:32469			## Plex DNLA Server
+			- 8324:8324  			## Plex for Roku via Plex Companion App
+
+networks:
+  default:
+    name: dockarrstack
+    external: true

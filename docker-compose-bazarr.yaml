@@ -11,16 +11,16 @@ services:
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
     container_name: bazarr
-    network_mode: "service:gluetun"
+    network_mode: "container:gluetun"
     volumes: 
     
     environment:
       - PUID="${PUID:?error}"
       - GUID="${GUID:?error}"
-      - TZ="${TZ:?error}"
+      - TZ="${TIME_ZONE:?error}"
     restart: unless-stopped
 
-# Gluetun manages the ports for containers that use "service:glueten"  
+# Gluetun manages the ports for containers that use "container:gluetun"  
 
 #   ports:
 #     - 6767:6767

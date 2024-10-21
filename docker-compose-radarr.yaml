@@ -2,7 +2,7 @@
 #######################################################################
 ###																																	###
 ### docker-compose-radarr.yaml																		  ###
-### Edited on/by: 10/15/24 by Jacob Barnes												  ###
+### Edited on/by: 10/21/24 by Jacob Barnes												  ###
 ###																																	###
 #######################################################################
 #######################################################################
@@ -11,13 +11,13 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
-    network_mode: "service:glueten"
+    network_mode: "container:glueten"
     volumes:
     
     environment: 
-      - PUID=1000
-      - GUID=1000
-      - TZ=America/New_York
+      - PUID="${PUID:?error}"
+      - GUID="${GUID:?error}"
+      - TZ="${TIME_ZONE:?error}"
     restart: unless-stopped
       
 # Gluetun manages the ports for containers that use "service:glueten"  

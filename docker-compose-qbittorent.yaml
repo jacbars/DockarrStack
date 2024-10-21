@@ -11,13 +11,13 @@ services:
   qbittorent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorent
-    network_mode: "service:gluetun"
+    network_mode: "container:gluetun"
     volumes: 
     
     environment:
       - PUID="${PUID:?error}"
       - GUID="${GUID:?error}"
-      - TZ="${TZ:?error}"
+      - TZ="${TIME_ZONE:?error}"
       - WEBUI_PORT="${QBIT_WEBUI:?error}"
     restart: unless-stopped
 

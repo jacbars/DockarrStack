@@ -11,7 +11,7 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
-    network_mode: "container:glueten"
+    network_mode: "container:gluetun"
     volumes:
     
     environment: 

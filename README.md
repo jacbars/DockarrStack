@@ -1,4 +1,4 @@
-# DockArrStack (Homelab)
+# DockarrStack (Homelab)
 Welcome to the DockArrStack project. It is part of my DockerVM (192.168.0.229) in my homelab. DockerVM is a virtual machine that hosts all my docker containers including this project. My goal for this project is to learn about docker-compose, deploying containers, github to host files, documenting processes, teaching others to use my work, and much more.
 
 I took heavy insperation from [geekau's](https://github.com/geekau) [Mediastack Project](https://github.com/geekau/mediastack) to create this and referenced his work constantly. </br>

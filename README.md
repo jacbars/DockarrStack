@@ -1,8 +1,8 @@
-# DockerVM (Homelab)
-Welcome to my DockerVM (192.168.0.229) in my homelab. DockerVM is a virtual machine that hosts all my docker containers which mostly consists of things like Plex and *ARR containers for media autiomation. I created this to challen
+# DockArrStack (Homelab)
+Welcome to the DockArrStack project. It is part of my DockerVM (192.168.0.229) in my homelab. DockerVM is a virtual machine that hosts all my docker containers including this project. My goal for this project is to learn about docker-compose, deploying containers, github to host files, documenting processes, teaching others to use my work, and much more.
 
 I took heavy insperation from [geekau's](https://github.com/geekau) [Mediastack Project](https://github.com/geekau/mediastack) to create this and referenced his work constantly. </br>
-I also used [LinuxServer.io](https://www.linuxserver.io/) to gather information on how to create the docker-compose files as well as how to configure them.
+I also used [LinuxServer.io](https://www.linuxserver.io/) to gather information on how to create some of the specific docker-compose files as well as how to configure them.
 
 </br>
 

@@ -2,12 +2,12 @@
 #######################################################################
 ###																																	###
 ### Docker-Compose-gluetun.yaml																			###
-### Edited/by: 10/21/24 by Jacob Barnes															###
+### Edited/by: 10/22/24 by Jacob Barnes															###
 ###																																	###
 #######################################################################
 #######################################################################
 
-Version: "3"
+Version: "3.2"
 
 networks:
   dockarrstack:
@@ -39,13 +39,21 @@ services:
 			- "${QBIT_WEBUI:?error}"							## qBittorent WebUI
 			- "${QBIT_TCP:?error}"								## qBittorent TCP Connection			
 			
-		## Plex Server Ports, I don't want plex running through gluetun but I left them just in case. ##
-		##    - 32400:23400			## Plex Media Server (allow through firewall)
-		##	  - 32469:32469			## Plex DNLA Server
-		##	  - 8324:8324			## Plex for Roku via Plex Companion App
-		
+		# Plex Server Ports, I don't want plex running through gluetun but I left them just in case. 
+		#   - 32400:23400												## Plex Media Server (allow through firewall)
+		#	  - 32469:32469												## Plex DNLA Server
+		#	  - 8324:8324													## Plex for Roku via Plex Companion App
+
+
+ 		# I have this setup to use the NFS share from my TrueNAS instance #
 		volumes:
-		
+			- type: volume
+	 			source: trueNAS
+		 		target: /nfs
+		 		volume:
+		 			nocopy: true
+
+		# Common environment variables#
 		environment:
 			- PUID="${PUID:?error}"
 			- GUID="${GUID:?error}"
@@ -79,3 +87,10 @@ services:
 		
 		networks:
 			- dockarrstack
+
+# creating the NFS mount? | https://stackoverflow.com/questions/45282608/how-to-directly-mount-nfs-share-volume-in-container-using-docker-compose-v3
+volumes:
+	trueNAS: driver_opts
+ 		type: "nfs"
+	 	o: "addr=192.168.0.161,nolock,soft,rw"
+	 	device: ":/docker/example"

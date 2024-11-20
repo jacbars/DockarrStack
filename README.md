@@ -41,5 +41,9 @@ Admittidly, I enjoy Windows and have very little experince with linux at all bes
 
 </br>
 
+## Piracy Notice
 
+Using *arr applications for your legally owned or acquired digital media is a secure and efficient solution for managing content for you and your family. 
+
+I promote ethical and legal media management. Piracy, which infringes on intellectual property and harms creators, is strictly prohibited and will not be tolerated.
 
